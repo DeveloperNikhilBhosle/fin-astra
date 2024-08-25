@@ -4,5 +4,5 @@ import { InvestmentDataComponent } from './investment-data/investment-data.compo
 
 export const routes: Routes = [
     { path: '', component: HomePageComponent },
-    { path: 'investments-data', component: InvestmentDataComponent },
+    { path: 'investment-data', component: InvestmentDataComponent },
 ];
