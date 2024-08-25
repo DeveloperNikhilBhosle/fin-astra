@@ -1,78 +1,337 @@
-<section id="benefits-section" class="benefits-section theme-bg-light-gradient py-5">
-    <div class="container py-5">
-        <h2 class="section-heading text-center mb-3">Your Investments Data</h2>
-        <!-- <div class="section-intro single-col-max mx-auto text-center mb-5">Section intro goes here. Lorem ipsum dolor sit
+<div id="datacalculator" style="display: block;">
+    <section id="benefits-section" class="benefits-section theme-bg-light-gradient py-5">
+        <div class="container ">
+            <h2 class="section-heading text-center mb-3">Your Investments Data</h2>
+            <!-- <div class="section-intro single-col-max mx-auto text-center mb-5">Section intro goes here. Lorem ipsum dolor sit
         amet, consectetur adipiscing elit. Integer blandit consequat consequat. Orci varius natoque penatibus et magnis.
       </div> -->
-        <div class="row text-center">
-            <div class="item col-12 col-md-6 col-lg-4">
+            <div class="row text-center">
+                <div class="item col-12 col-md-12 col-lg-12">
 
 
-                <div class="item-inner p-3 p-lg-4">
-                    <div class="item-header mb-3">
-                        <div class="item-icon"><i class="fas fa-laptop-code"></i></div>
-                        <h3 class="item-heading">Comprehensive Tax Regime Comparison</h3>
-                    </div><!--//item-heading-->
-                    <div class="item-desc">
-                        Understand the key differences between old and new tax regimes with clear, visual comparisons.
-                    </div><!--//item-desc-->
-                </div><!--//item-inner-->
-            </div><!--//item-->
-            <div class="item col-12 col-md-6 col-lg-4">
-                <div class="item-inner p-3 p-lg-4">
-                    <div class="item-header mb-3">
-                        <div class="item-icon"><i class="fas fa-heart"></i></div>
-                        <h3 class="item-heading">Best Tax Regime For You</h3>
-                    </div><!--//item-heading-->
-                    <div class="item-desc">
-                        See which regime offers the best benefits based on your unique financial situation.
-                    </div><!--//item-desc-->
-                </div><!--//item-inner-->
-            </div><!--//item-->
-            <div class="item col-12 col-md-6 col-lg-4">
-                <div class="item-inner p-3 p-lg-4">
-                    <div class="item-header mb-3">
-                        <div class="item-icon"><i class="fab fa-rocketchat"></i></div>
-                        <h3 class="item-heading">HRA Calculation</h3>
-                    </div><!--//item-heading-->
-                    <div class="item-desc">
-                        Receive tailored advice on optimizing your rent for better tax efficiency.
-                    </div><!--//item-desc-->
-                </div><!--//item-inner-->
-            </div><!--//item-->
-            <div class="item col-12 col-md-6 col-lg-4">
-                <div class="item-inner p-3 p-lg-4">
-                    <div class="item-header mb-3">
-                        <div class="item-icon"><i class="fas fa-user-check"></i></div>
-                        <h3 class="item-heading">Actionable Insights</h3>
-                    </div><!--//item-heading-->
-                    <div class="item-desc">
-                        Maximize your returns and minimize your tax liabilities with actionable insights.
-                    </div><!--//item-desc-->
-                </div><!--//item-inner-->
-            </div><!--//item-->
-            <div class="item col-12 col-md-6 col-lg-4">
-                <div class="item-inner p-3 p-lg-4">
-                    <div class="item-header mb-3">
-                        <div class="item-icon"><i class="fas fa-code-branch"></i></div>
-                        <h3 class="item-heading">Clear Actionable Steps</h3>
-                    </div><!--//item-heading-->
-                    <div class="item-desc">
-                        Gain a straightforward approach to applying insights for financial optimization.
-                    </div><!--//item-desc-->
-                </div><!--//item-inner-->
-            </div><!--//item-->
-            <div class="item col-12 col-md-6 col-lg-4">
-                <div class="item-inner p-3 p-lg-4">
-                    <div class="item-header mb-3">
-                        <div class="item-icon"><i class="fas fa-fa-book"></i></div>
-                        <h3 class="item-heading">Simpler Report Format</h3>
-                    </div><!--//item-heading-->
-                    <div class="item-desc">
-                        Easy-to-read report layout designed for clarity and simplicity.
-                    </div><!--//item-desc-->
-                </div><!--//item-inner-->
-            </div><!--//item-->
-        </div><!--//row-->
-    </div><!--//container-->
-</section><!--//benefits-section-->
+                    <form id="hraCalculationForm">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2" style="text-align: center;">
+                                        <h5>Personal Information</h5>
+                                        <!-- <p>Which ever is lesser will applicable in HRA benefit </p> -->
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    <th>Components</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Display Name</td>
+                                    <td><input type="text" id="name" placeholder="Mr. NIKHIL BHOSLE"></td>
+                                </tr>
+                                <tr>
+                                    <td>Designation</td>
+                                    <td><input type="text" id="designation" placeholder="Software Developer"></td>
+                                </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td><textarea class="textarea" type="text" rows="3" id="address"
+                                            placeholder="Parel East, Mumbai 400016"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Gender</td>
+                                    <td> <select class="text" id="gender" name="gender"
+                                            style="width: 100%;font-size: 14px;" required>
+                                            <option value="Male" selected>Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                        </select></td>
+                                </tr>
+                                <tr>
+                                    <td>Senior Citizen</td>
+                                    <td> <select class="text" id="ss" name="pfApplicable"
+                                            style="width: 100%;font-size: 14px;" required>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No" selected>No</option>
+                                        </select></td>
+                                </tr>
+                                <tr>
+                                    <td>PF Applicable</td>
+                                    <td> <select class="text" id="pf" name="pfApplicable"
+                                            style="width: 100%;font-size: 14px;" required>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No" selected>No</option>
+                                        </select></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </form>
+
+
+
+
+                    <form id="investmentForm">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="3" style="text-align: center;">
+                                        <h5>Tax Benifits</h5>
+                                        <!-- <p>Which ever is lesser will applicable in HRA benefit </p> -->
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    <th>Sections</th>
+                                    <th>Particulars of Investments/Deduction</th>
+                                    <th>Investment Amount in Rs.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Existing sections -->
+                                <tr>
+
+                                    <td>U/S 80 C</td>
+                                    <td>PPF/GPF</td>
+                                    <td><input type="number" id="ppfGpf" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+
+                                    <td>Rent Arrears</td>
+                                    <td><input type="number" id="rentarrears" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+
+                                    <td>Sukanya deposit</td>
+                                    <td><input type="number" id="sukanyadeposit" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+
+                                    <td>LIC</td>
+                                    <td><input type="number" id="lic" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+
+                                    <td>GIS/NCS</td>
+                                    <td><input type="number" id="gisncs" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+
+                                    <td>Tuition Fee (other than reimbursed by office)</td>
+                                    <td><input type="number" id="tutionfees" value="0"></td>
+                                </tr>
+
+                                <tr>
+
+                                    <td></td>
+                                    <td>Post office time deposits</td>
+                                    <td><input type="number" id="postoffice" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+
+                                    <td>Other</td>
+                                    <td><input type="number" id="other" value="0"></td>
+                                </tr>
+                                <tr>
+
+                                    <td></td>
+                                    <td>NPS (other than reimbursed by office)</td>
+                                    <td><input type="number" id="npsoffice" value="0"></td>
+                                </tr>
+
+                                <tr>
+
+                                    <td>U/S 80 CCD</td>
+                                    <td>NPS</td>
+                                    <td><input type="number" id="nps" value="0"></td>
+                                </tr>
+
+                                <!-- New sections -->
+                                <tr>
+                                    <td>U/S 80 D</td>
+                                    <td>Self Insurance</td>
+                                    <td><input type="number" id="selfInsurance" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+
+                                    <td>Parents Insurance (If parents age is below 60 Years)</td>
+                                    <td><input type="number" id="parentsInsuranceBelow60" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+
+                                    <td>Parents Insurance (if Parents age is above 60 Years)</td>
+                                    <td><input type="number" id="parentsInsuranceAbove60" value="0"></td>
+                                </tr>
+                                <tr>
+
+                                    <td>U/S 80 DD</td>
+                                    <td>Maintenance / Treatment of Handicapped dependent</td>
+                                    <td><input type="number" id="handicappedDependent" value="0"></td>
+                                </tr>
+                                <tr>
+
+                                    <td>U/S 80 E</td>
+                                    <td>Interest on a loan taken for higher education</td>
+                                    <td><input type="number" id="educationLoanInterest" value="0"></td>
+                                </tr>
+                                <tr>
+
+                                    <td>U/S 80 G</td>
+                                    <td>Donation</td>
+                                    <td><input type="number" id="donation" value="0"></td>
+                                </tr>
+                                <tr>
+
+                                    <td>U/S 80 U</td>
+                                    <td>Physical Disability</td>
+                                    <td><input type="number" id="physicalDisability" value="0"></td>
+                                </tr>
+                                <tr>
+
+                                    <td>U/S 24 (1) (b)</td>
+                                    <td>Interest on Housing Loan</td>
+                                    <td><input type="number" id="housingLoanInterest" value="0"></td>
+                                </tr>
+                                <!-- <tr>
+
+                                <td>U/S 10 (13A)</td>
+                                <td>Rent Paid</td>
+                                <td><input type="number" id="rentPaid" value="424800.00"></td>
+                            </tr> -->
+                                <tr>
+
+                                    <td>U/S 80EEA</td>
+                                    <td>Additional Deduction for Interest on Home Loan</td>
+                                    <td><input type="number" id="additionalHomeLoanInterest" value="0"></td>
+                                </tr>
+                                <tr>
+
+                                    <td>U/S 80 EEB</td>
+                                    <td>Deduction for Interest on Loan taken to Buy Electrical Vehicle</td>
+                                    <td><input type="number" id="electricVehicleLoanInterest" value="0"></td>
+                                </tr>
+                                <tr>
+
+                                    <td>U/S 80GG</td>
+                                    <td>Rent paid in excess of 10% of total income</td>
+                                    <td><input type="number" id="excessRentPaid" value="0"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <input type="button" value="Calculate" onclick="calculateTotals()">
+                    </form>
+
+
+                    <form id="incomesource">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2" style="text-align: center;">
+                                        <h5>Income Sources</h5>
+                                        <p>List all Taxable Incomes </p>
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    <th>Components</th>
+                                    <th>Amount in Rs.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Yearly Salary ( Basic / Gross ) </td>
+                                    <td><input type="number" id="yearlySalary" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td>Yearly Bonus </td>
+                                    <td><input type="number" id="bonus" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td>Income From House Property </td>
+                                    <td><input type="number" id="houseproperty" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td>Income From Capital Gain</td>
+                                    <td><input type="number" id="capitalgain" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td>Income From Other Source</td>
+                                    <td><input type="number" id="othersource" value="0"></td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+
+                    </form>
+
+                    <form id="hraCalculationForm">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2" style="text-align: center;">
+                                        <h5>HEA Calculation</h5>
+                                        <p>Which ever is lesser will applicable in HRA benefit </p>
+                                    </th>
+
+                                </tr>
+                                <tr>
+                                    <th>Components</th>
+                                    <th>Amount in Rs.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td>EPF </td>
+                                    <td><input type="number" id="epf" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td>40% Of Basic Salary</td>
+                                    <td><input type="number" readonly disabled id="basicSalary40" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td>Actual HRA</td>
+                                    <td><input type="number" id="actualHra" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td>Actual Rent</td>
+                                    <td><input type="number" id="actualRent" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td>Metro City</td>
+                                    <td><select class="text" id="metrocity" style="width: 100%;font-size: 14px;"
+                                            name="pfApplicable" required>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No" selected>No</option>
+                                        </select></td>
+                                </tr>
+                                <tr>
+                                    <td>Actual rent paid - 10% of basic</td>
+                                    <td><input type="number" readonly disabled id="actualRentPaid" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td>Deduction Allowed</td>
+                                    <td><input type="number" readonly disabled id="deductionAllowed" value="0"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <input type="button" value="Calculate" onclick="calculateHra()">
+                    </form>
+
+                </div><!--//item-->
+
+
+            </div><!--//row-->
+        </div><!--//container-->
+    </section><!--//benefits-section-->
+</div>
