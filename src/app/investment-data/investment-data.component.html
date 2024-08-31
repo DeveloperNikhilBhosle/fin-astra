@@ -26,11 +26,12 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Display Name</td>
+                                    <td>Display Name <b style="color: red;">*</b>
+                                    </td>
                                     <td><input type="text" id="name" placeholder="Mr. NIKHIL BHOSLE"></td>
                                 </tr>
                                 <tr>
-                                    <td>Designation</td>
+                                    <td>Designation <b style="color: red;">*</b></td>
                                     <td><input type="text" id="designation" placeholder="Software Developer"></td>
                                 </tr>
                                 <tr>
@@ -40,7 +41,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Gender</td>
+                                    <td>Gender <b style="color: red;">*</b></td>
                                     <td> <select class="text" id="gender" name="gender"
                                             style="width: 100%;font-size: 14px;" required>
                                             <option value="Male" selected>Male</option>
@@ -49,16 +50,16 @@
                                         </select></td>
                                 </tr>
                                 <tr>
-                                    <td>Senior Citizen</td>
-                                    <td> <select class="text" id="ss" name="pfApplicable"
+                                    <td>Senior Citizen <b style="color: red;">*</b></td>
+                                    <td> <select class="text" id="seniorcitizen" name="pfApplicable"
                                             style="width: 100%;font-size: 14px;" required>
                                             <option value="Yes">Yes</option>
                                             <option value="No" selected>No</option>
                                         </select></td>
                                 </tr>
                                 <tr>
-                                    <td>PF Applicable</td>
-                                    <td> <select class="text" id="pf" name="pfApplicable"
+                                    <td>PF Applicable <b style="color: red;">*</b></td>
+                                    <td> <select class="text" id="pfapplicable" name="pfApplicable"
                                             style="width: 100%;font-size: 14px;" required>
                                             <option value="Yes">Yes</option>
                                             <option value="No" selected>No</option>
@@ -67,12 +68,9 @@
                             </tbody>
                         </table>
 
-                    </form>
+                        <!-- </form>
 
-
-
-
-                    <form id="investmentForm">
+                    <form id="investmentForm"> -->
                         <table>
                             <thead>
                                 <tr>
@@ -162,14 +160,22 @@
                                 <tr>
                                     <td></td>
 
-                                    <td>Parents Insurance (If parents age is below 60 Years)</td>
-                                    <td><input type="number" id="parentsInsuranceBelow60" value="0"></td>
+                                    <td>Parents Insurance </td>
+                                    <td><input type="number" id="parentsInsurance" value="0"></td>
                                 </tr>
                                 <tr>
                                     <td></td>
 
-                                    <td>Parents Insurance (if Parents age is above 60 Years)</td>
-                                    <td><input type="number" id="parentsInsuranceAbove60" value="0"></td>
+                                    <!-- <td>Parents Insurance (if Parents age is above 60 Years)</td>
+                                    <td><input type="number" id="parentsInsuranceAbove60" value="0"></td> -->
+
+                                    <td>Any Parent Is Above 60 Age</td>
+                                    <td> <select class="text" id="parentsIsAbove60" name="pfApplicable"
+                                            style="width: 100%;font-size: 14px;" required>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No" selected>No</option>
+                                        </select></td>
+
                                 </tr>
                                 <tr>
 
@@ -186,7 +192,11 @@
                                 <tr>
 
                                     <td>U/S 80 G</td>
-                                    <td>Donation</td>
+                                    <td>Donation
+                                        <p style="font-size: 10px;">(Prime Minister’s Relief Fund, Chief Minister’s
+                                            Relief Fund or Lt. Governor’s Relief Fund). Rebate for any other donation
+                                            should be claimed directly.</p>
+                                    </td>
                                     <td><input type="number" id="donation" value="0"></td>
                                 </tr>
                                 <tr>
@@ -194,6 +204,16 @@
                                     <td>U/S 80 U</td>
                                     <td>Physical Disability</td>
                                     <td><input type="number" id="physicalDisability" value="0"></td>
+                                </tr>
+                                <tr>
+
+                                    <td></td>
+                                    <td>Disability Category</td>
+                                    <td> <select class="text" id="parentsIsAbove60" name="pfApplicable"
+                                            style="width: 100%;font-size: 14px;" required>
+                                            <option value="75000" selected>Normal Disability</option>
+                                            <option value="125000" selected>Severe Disability</option>
+                                        </select></td>
                                 </tr>
                                 <tr>
 
@@ -227,11 +247,11 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <input type="button" value="Calculate" onclick="calculateTotals()">
-                    </form>
+                        <!-- <input type="button" value="Calculate" onclick="calculateTotals()"> -->
+                        <!-- </form>
 
 
-                    <form id="incomesource">
+                    <form id="incomesource"> -->
                         <table>
                             <thead>
                                 <tr>
@@ -249,7 +269,7 @@
                             <tbody>
                                 <tr>
                                     <td>Yearly Salary ( Basic / Gross ) </td>
-                                    <td><input type="number" id="yearlySalary" value="0"></td>
+                                    <td><input min="90000" type="number" id="yearlySalary" value="0"></td>
                                 </tr>
                                 <tr>
                                     <td>Yearly Bonus </td>
@@ -272,9 +292,9 @@
                             </tbody>
                         </table>
 
-                    </form>
+                        <!-- </form>
 
-                    <form id="hraCalculationForm">
+                    <form id="hraCalculationForm"> -->
                         <table>
                             <thead>
                                 <tr>
@@ -325,7 +345,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <input type="button" value="Calculate" onclick="calculateHra()">
+                        <input type="button" value="Calculate" (click)="calculateTax()">
                     </form>
 
                 </div><!--//item-->
