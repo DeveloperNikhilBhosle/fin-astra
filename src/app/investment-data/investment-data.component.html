@@ -268,9 +268,27 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Yearly Salary ( Basic / Gross ) </td>
-                                    <td><input min="90000" type="number" id="yearlySalary" value="0"></td>
+                                    <td>Yearly Salary ( Gross ) </td>
+                                    <td><input min="90000" type="number" (change)="CalculateBasicSalary()"
+                                            id="yearlySalary" value="0"></td>
                                 </tr>
+
+                                <tr style="background: #f7da88;">
+                                    <td>Basic </td>
+                                    <td><input min="90000" type="number" id="basicSalary" value="0"></td>
+                                </tr>
+
+                                <tr style="background: #f7da88;">
+                                    <td> HRA </td>
+                                    <td><input min="90000" type="number" id="hra" value="0"></td>
+                                </tr>
+
+                                <tr style="background: #f7da88;">
+                                    <td> Special Allowance </td>
+                                    <td><input min="90000" type="number" id="special_allowance" value="0"></td>
+                                </tr>
+
+
                                 <tr>
                                     <td>Yearly Bonus </td>
                                     <td><input type="number" id="bonus" value="0"></td>
@@ -321,18 +339,19 @@
                                 </tr>
                                 <tr>
                                     <td>Actual HRA</td>
-                                    <td><input type="number" id="actualHra" value="0"></td>
+                                    <td><input readonly disabled type="number" id="actualHra" value="0"></td>
                                 </tr>
                                 <tr>
-                                    <td>Actual Rent</td>
-                                    <td><input type="number" id="actualRent" value="0"></td>
+                                    <td>Actual Rent ( 12 Months )</td>
+                                    <td><input type="number" (change)="CalculateBasicSalary()" id="actualRent"
+                                            value="0"></td>
                                 </tr>
                                 <tr>
                                     <td>Metro City</td>
-                                    <td><select class="text" id="metrocity" style="width: 100%;font-size: 14px;"
-                                            name="pfApplicable" required>
-                                            <option value="Yes">Yes</option>
-                                            <option value="No" selected>No</option>
+                                    <td><select class="text" (change)="CalculateBasicSalary()" id="metrocity"
+                                            style="width: 100%;font-size: 14px;" name="pfApplicable" required>
+                                            <option value="yes">Yes</option>
+                                            <option value="no" selected>No</option>
                                         </select></td>
                                 </tr>
                                 <tr>
@@ -345,7 +364,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <input type="button" value="Calculate" (click)="calculateTax()">
+                        <input type="button" value="Calculate" (click)="downloadPage()">
                     </form>
 
                 </div><!--//item-->

@@ -120,4 +120,66 @@ export class InvestmentDataComponent {
     }
   }
 
+  CalculateBasicSalary() {
+    const yearlySalary = Number((document.getElementById('yearlySalary') as HTMLInputElement).value);
+
+
+    var s = ((yearlySalary) * (yearlySalary > 360000 ? 50 : 100));
+    var calculatebasic = s > 0 ? (s / 100) : 0;
+    var hra = (yearlySalary > 360000 ? (calculatebasic / 2) : 0);
+    var specialAllowance = yearlySalary - (calculatebasic + hra);
+
+    (document.getElementById("basicSalary") as HTMLInputElement).value = calculatebasic.toString();
+
+    (document.getElementById("hra") as HTMLInputElement).value = hra.toString();
+
+    (document.getElementById("special_allowance") as HTMLInputElement).value = specialAllowance.toString();
+
+
+    const metrocity = (document.getElementById('metrocity') as HTMLInputElement).value;
+    var x = calculatebasic * (metrocity == "yes" ? 0.5 : 0.4);
+    (document.getElementById("basicSalary40") as HTMLInputElement).value = x.toString();
+    (document.getElementById("actualHra") as HTMLInputElement).value = hra.toString();
+
+
+    var actualrent = Number((document.getElementById('actualRent') as HTMLInputElement).value);
+
+    var tenper_ofactualrent = actualrent == 0 ? 0 : (actualrent - (calculatebasic * 10 / 100));
+    tenper_ofactualrent = tenper_ofactualrent < 0 ? 0 : tenper_ofactualrent;
+    (document.getElementById("actualRentPaid") as HTMLInputElement).value = tenper_ofactualrent.toString();
+
+    var min_hra = Math.min(tenper_ofactualrent, actualrent, hra, x);
+
+    (document.getElementById("deductionAllowed") as HTMLInputElement).value = min_hra.toString();
+
+  }
+
+  downloadPage() {
+    const content = document.documentElement.outerHTML; // Get the entire HTML content
+    const styles = Array.from(document.styleSheets)
+      .map(sheet => {
+        try {
+          const rules = Array.from(sheet.cssRules)
+            .map(rule => rule.cssText)
+            .join('\n');
+          return `<style>${rules}</style>`;
+        } catch (e) {
+          console.warn(`Could not access styles from: ${sheet.href}`);
+          return '';
+        }
+      })
+      .join('\n');
+
+    const blob = new Blob([`${styles}\n${content}`], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'page.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url); // Clean up the URL object
+  }
+
 }
