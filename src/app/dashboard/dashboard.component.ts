@@ -9,25 +9,7 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
 
-  // getData =
-  //   {
-  //     name: 'Ruthvik Salunke',
-  //     designation: 'Software Developer',
-  //     new_regime_tax: {
-  //       effective_tax_rate: 22.53,
-  //       is_recommended: true,
-  //       taxable_income: 3922200,
-  //       total_tax_payable: 901326
-  //     },
-  //     old_regime_tax: {
-  //       effective_tax_rate: 24.78,
-  //       is_recommended: false,
-  //       taxable_income: 3798000,
-  //       total_tax_payable: 989976
-  //     }
-  //   }
-
-  getData: any = [];
+  getData: any;
   isOldRecommended: any;
   recommendedTaxPayable: any;
   recommendedEffectiveTaxRate: any;
@@ -37,6 +19,7 @@ export class DashboardComponent {
   nonRecommendedTaxRegime: any;
   recommendedTaxableIncome: any;
   nonRecommendedTaxableIncome: any;
+  pdf_link: any;
 
   ngOnInit() {
     this.getTaxData();
@@ -44,7 +27,10 @@ export class DashboardComponent {
 
   getTaxData() {
     this.getData = localStorage.getItem('data');
+    this.getData = JSON.parse(this.getData);
+    console.log(this.getData, "data");
     this.isOldRecommended = this.getData.old_regime_tax.is_recommended;
+    this.pdf_link = this.getData.pdf_base64;
     if (this.isOldRecommended === true) {
       this.recommendedTaxPayable = this.getData.old_regime_tax?.total_tax_payable;
       this.recommendedEffectiveTaxRate = this.getData.old_regime_tax?.effective_tax_rate;

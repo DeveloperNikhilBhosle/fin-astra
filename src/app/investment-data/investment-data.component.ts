@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 // import { ToastrService } from 'ngx-toastr';
 import html2pdf from 'html2pdf.js';
 import { SharedLayoutComponent } from '../shared-layout/shared-layout.component';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-investment-data',
@@ -11,6 +13,8 @@ import { SharedLayoutComponent } from '../shared-layout/shared-layout.component'
   styleUrl: './investment-data.component.css'
 })
 export class InvestmentDataComponent {
+
+  constructor(private router: Router) { }
 
   amt80C: any = 0;
   amt80CD: any = 0;
@@ -217,18 +221,19 @@ export class InvestmentDataComponent {
       new_regime_tax: {
         effective_tax_rate: effectiveTaxRateNewPer,
         is_recommended: recommanded == "new" ? true : false,
-        taxable_income: total_taxableincome_old,
-        total_tax_payable: net_tax_payable_old
+        taxable_income: total_taxableincome_new,
+        total_tax_payable: net_tax_payable_new
       },
       old_regime_tax: {
         effective_tax_rate: effectiveTaxRateOldPer,
         is_recommended: recommanded == "old" ? true : false,
-        taxable_income: total_taxableincome_new,
-        total_tax_payable: net_tax_payable_new
+        taxable_income: total_taxableincome_old,
+        total_tax_payable: net_tax_payable_old
       }
     };
 
     localStorage.setItem("data", JSON.stringify(json));
+    this.router.navigate(['/tax']);
 
 
   }
