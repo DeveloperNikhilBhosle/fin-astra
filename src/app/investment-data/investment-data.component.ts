@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 // import { ToastrService } from 'ngx-toastr';
+import html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-investment-data',
@@ -155,31 +156,20 @@ export class InvestmentDataComponent {
   }
 
   downloadPage() {
-    const content = document.documentElement.outerHTML; // Get the entire HTML content
-    const styles = Array.from(document.styleSheets)
-      .map(sheet => {
-        try {
-          const rules = Array.from(sheet.cssRules)
-            .map(rule => rule.cssText)
-            .join('\n');
-          return `<style>${rules}</style>`;
-        } catch (e) {
-          console.warn(`Could not access styles from: ${sheet.href}`);
-          return '';
-        }
-      })
-      .join('\n');
+    const element = document.getElementById('datacalculator');
+    const options = {
+      margin: 1,
+      filename: 'investments_data.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
 
-    const blob = new Blob([`${styles}\n${content}`], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'page.pdf';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url); // Clean up the URL object
+    if (element) {
+      html2pdf(element).from(element).set(options).save();
+    } else {
+      console.error('Element not found!');
+    }
   }
 
 }

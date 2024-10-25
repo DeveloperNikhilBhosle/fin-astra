@@ -122,3 +122,18 @@ input[type="button"]:hover {
     font-size: 18px;
     margin: 8px 0;
 }
+
+
+
+/* Result Page */
+.card2[_ngcontent-ng-cli-universal-c1584294844] {
+    padding: 24px;
+    border: 1px solid #E5EBF2;
+    background-color: #fff;
+}
+
+*,
+:after,
+:before {
+    box-sizing: border-box;
+}
