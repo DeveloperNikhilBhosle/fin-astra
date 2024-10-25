@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import html2pdf from 'html2pdf.js';
+import { SharedLayoutComponent } from '../shared-layout/shared-layout.component';
 
 @Component({
   selector: 'app-calculation-result',
   standalone: true,
-  imports: [],
+  imports: [SharedLayoutComponent],
   templateUrl: './calculation-result.component.html',
   styleUrl: './calculation-result.component.css'
 })

@@ -5,6 +5,10 @@ body {
     background-color: #f9f9f9;
 }
 
+.benefits-section {
+    background-image: linear-gradient(to bottom, #f6f8fc 0%, #fff 70%);
+}
+
 h1,
 h2 {
     text-align: center;

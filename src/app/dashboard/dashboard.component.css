@@ -1,0 +1,211 @@
+.finance-card-container {
+    padding: 30px;
+    background-image: linear-gradient(to bottom, #f6f8fc 0%, #fff 70%);
+}
+
+.card2 {
+    padding: 24px;
+    border: 1px solid #E5EBF2;
+    background-color: #fff;
+}
+
+.justify-content-div {
+    justify-content: space-between;
+}
+
+.nameIndependent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-font {
+    font-size: 28px;
+    font-weight: 600;
+    color: #27272E;
+}
+
+.title-designation-font {
+    font-size: 16px;
+    font-weight: 500;
+    color: #27272E;
+    margin-bottom: 0px;
+}
+
+.right-side .m-txt:not(:last-child) {
+    margin-right: 24px;
+}
+
+.ms-img1 img {
+    width: 109px;
+    height: 109px;
+    display: flex;
+    justify-content: center;
+}
+
+.sub-tax-heading {
+    font-weight: 400;
+    font-size: 28px;
+    color: #1a1a1d;
+    display: inline-block;
+    padding: 32px 0px 32px 0px;
+}
+
+.income-p {
+    padding: 0 15px;
+}
+
+.workbook-card {
+    background: #fff;
+    height: 100%;
+    border-radius: 0px !important;
+}
+
+.taxable-title p {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    color: #898b90;
+}
+
+.card-align {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.old-tax-svg {
+    border-radius: 2px;
+    background: #e6e0ff;
+    margin-right: 16px;
+    padding: 8px;
+}
+
+.recommended {
+    border-radius: var(--Border-Radius, 2px) 0px 0px var(--Border-Radius, 2px);
+    background: var(--1F-4_SunshineYellow, #ffe6a8);
+    display: inline-flex;
+    padding: 8px 16px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0px;
+    position: absolute;
+    right: -20px;
+    z-index: 2;
+    top: 0px;
+}
+
+/* For large screens */
+@media screen and (min-width: 768px) {
+    .recommended {
+        margin-left: 55px;
+        /* Apply margin only for large screens */
+    }
+}
+
+/* For small screens */
+@media screen and (max-width: 767px) {
+    .recommended {
+        margin-left: 0;
+        /* Remove margin for small screens */
+    }
+}
+
+.rec-tax {
+    color: var(--1F-4_Primary, #4b4c51);
+    text-align: center;
+
+    /* Headings/h6 */
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    margin-bottom: 0px !important;
+}
+
+.recommended-bg-sticker {
+    position: absolute;
+    right: -20px;
+    z-index: 1;
+    top: 36px;
+}
+
+::ng-deep .svg-icon {
+    margin-left: 178px;
+    margin-top: -8px;
+}
+
+.tax-div {
+    padding-top: 16px;
+}
+
+.old-new-taxable-total {
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    color: #000;
+}
+
+.old-new-row-parent {
+    padding-top: 10px;
+}
+
+.current-regime-value {
+    color: #898b90;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.new-tax-svg {
+    border-radius: 2px;
+    background: #deedff;
+    margin-right: 16px;
+    padding: 8px;
+}
+
+.content-align2 {
+    margin-top: 6px;
+}
+
+.tax-percent {
+    color: var(--1F-5_Primary, #65676d);
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 30px;
+}
+
+.generate-fwp {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.fwp h4 {
+    font-weight: 600;
+    font-size: 20px;
+    padding: 0 0 16px;
+}
+
+.fwp p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #425466;
+}
+
+.black-lg-btn {
+    background-color: #000 !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+    padding: 7px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 150px;
+    border: 1px solid #000000;
+}
+
+.fwp-generate-div {
+    margin-top: 30px;
+}

@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 // import { ToastrService } from 'ngx-toastr';
 import html2pdf from 'html2pdf.js';
+import { SharedLayoutComponent } from '../shared-layout/shared-layout.component';
 
 @Component({
   selector: 'app-investment-data',
   standalone: true,
-  imports: [],
+  imports: [SharedLayoutComponent],
   templateUrl: './investment-data.component.html',
   styleUrl: './investment-data.component.css'
 })
