@@ -44,17 +44,17 @@
                                     <td>Gender <b style="color: red;">*</b></td>
                                     <td> <select class="text" id="gender" name="gender"
                                             style="width: 100%;font-size: 14px;" required>
-                                            <option value="Male" selected>Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="Other">Other</option>
+                                            <option value="male" selected>Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
                                         </select></td>
                                 </tr>
                                 <tr>
                                     <td>Senior Citizen <b style="color: red;">*</b></td>
                                     <td> <select class="text" id="seniorcitizen" name="pfApplicable"
                                             style="width: 100%;font-size: 14px;" required>
-                                            <option value="Yes">Yes</option>
-                                            <option value="No" selected>No</option>
+                                            <option value="yes">Yes</option>
+                                            <option value="no" selected>No</option>
                                         </select></td>
                                 </tr>
                                 <tr>
@@ -75,7 +75,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="3" style="text-align: center;">
-                                        <h5>Tax Benifits</h5>
+                                        <h5>Tax Benefits</h5>
                                         <!-- <p>Which ever is lesser will applicable in HRA benefit </p> -->
                                     </th>
 
@@ -172,8 +172,8 @@
                                     <td>Any Parent Is Above 60 Age</td>
                                     <td> <select class="text" id="parentsIsAbove60" name="pfApplicable"
                                             style="width: 100%;font-size: 14px;" required>
-                                            <option value="Yes">Yes</option>
-                                            <option value="No" selected>No</option>
+                                            <option value="true">Yes</option>
+                                            <option value="false" selected>No</option>
                                         </select></td>
 
                                 </tr>
@@ -182,6 +182,13 @@
                                     <td>U/S 80 DD</td>
                                     <td>Maintenance / Treatment of Handicapped dependent</td>
                                     <td><input type="number" id="handicappedDependent" value="0"></td>
+                                </tr>
+                                <tr>
+
+                                    <td></td>
+                                    <td>Disability Percentage</td>
+                                    <td><input required type="number" min="0" max="100" id="disabilityPercentage"
+                                            value="0" (change)="DisabilityPerchangeValidate()"></td>
                                 </tr>
                                 <tr>
 
@@ -209,10 +216,10 @@
 
                                     <td></td>
                                     <td>Disability Category</td>
-                                    <td> <select class="text" id="parentsIsAbove60" name="pfApplicable"
+                                    <td> <select class="text" id="physicalDisabilityPer" name="pfApplicable"
                                             style="width: 100%;font-size: 14px;" required>
-                                            <option value="75000" selected>Normal Disability</option>
-                                            <option value="125000" selected>Severe Disability</option>
+                                            <option value="false" selected>Normal Disability</option>
+                                            <option value="true" selected>Severe Disability</option>
                                         </select></td>
                                 </tr>
                                 <tr>
@@ -241,9 +248,9 @@
                                 </tr>
                                 <tr>
 
-                                    <td>U/S 80GG</td>
-                                    <td>Rent paid in excess of 10% of total income</td>
-                                    <td><input type="number" id="excessRentPaid" value="0"></td>
+                                    <td>Other Income</td>
+                                    <td>Any Other Income</td>
+                                    <td><input type="number" id="otherIncome" value="0"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -317,7 +324,7 @@
                             <thead>
                                 <tr>
                                     <th colspan="2" style="text-align: center;">
-                                        <h5>HEA Calculation</h5>
+                                        <h5>HRA Calculation</h5>
                                         <p>Which ever is lesser will applicable in HRA benefit </p>
                                     </th>
 
@@ -364,7 +371,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <input type="button" value="Calculate" (click)="downloadPage()">
+                        <input type="button" value="Calculate" (click)="Calculate()">
                     </form>
 
                 </div><!--//item-->
