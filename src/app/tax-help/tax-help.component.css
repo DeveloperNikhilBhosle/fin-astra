@@ -1,0 +1,126 @@
+.title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+    position: relative;
+    opacity: 0;
+    /* Start hidden */
+    animation: slideIn 0.8s ease-in-out forwards;
+    /* Trigger the slide-in animation */
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+        /* Start from the left */
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        /* End at original position */
+        opacity: 1;
+    }
+}
+
+.container-fluid {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .question {
+    width: 60%;
+    height: 54px;
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    padding: 15px 25px;
+    font-size: 1rem;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    resize: none; 
+    overflow: hidden; 
+} */
+
+.textarea-container {
+    position: relative;
+    width: 60%;
+}
+
+.question {
+    width: 100%;
+    height: 54px;
+    border-radius: 50px;
+    padding: 15px 45px 15px 25px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    font-size: 1rem;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    resize: none;
+    overflow: hidden;
+}
+
+.getResponse {
+    width: 100%;
+    min-height: 300px;
+    max-height: 400px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    font-size: 1rem;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    resize: none;
+    overflow-y: auto;
+}
+
+.question-response {
+    width: 60%;
+    margin-top: 30px;
+}
+
+.question:focus {
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.15);
+    /* Slightly stronger shadow */
+    outline: none;
+}
+
+.getResponse:focus {
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.15);
+    /* Slightly stronger shadow */
+    outline: none;
+}
+
+.question::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+.send-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.send-icon:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.send-icon:not(:disabled):hover {
+    color: #007bff;
+    /* Active color */
+}
