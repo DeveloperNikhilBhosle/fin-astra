@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import html2pdf from 'html2pdf.js';
 import { SharedLayoutComponent } from '../shared-layout/shared-layout.component';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class InvestmentDataComponent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
   validate: boolean = true;
   amt80C: any = 0;
@@ -298,6 +299,19 @@ export class InvestmentDataComponent {
 
     console.log("JSON Report", this.api_json);
 
+
+
+    this.http.post("http://localhost:8000/fwp-latest/pdf", JSON.stringify(this.api_json)).subscribe({
+      next: (response: any) => {
+        console.log('API Response:', response);
+      },
+      error: (e) => {
+        console.log('API ERROR:' + e);
+
+      }
+    });
+
+    localStorage.setItem('api_data', JSON.stringify(this.api_json));
     localStorage.setItem("data", JSON.stringify(json));
     this.router.navigate(['/tax']);
 
