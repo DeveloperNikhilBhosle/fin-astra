@@ -16,6 +16,7 @@ export class InvestmentDataComponent {
 
   constructor(private router: Router) { }
 
+  validate: boolean = true;
   amt80C: any = 0;
   amt80CD: any = 0;
   amt80D: any = 0;
@@ -29,31 +30,70 @@ export class InvestmentDataComponent {
   amtOtherIncome: any = 0;
   yearlySalary: any = 0;
   hra_deduction_allowed: any = 0;
+  api_json: any = {
+    "personal_info": {
+      "name": "",
+      "designation": ""
+    },
+    "investments": [],
+    "insurance": {
+      "self": 0,
+      "parents": 0,
+      "ss": false
+    },
+    "donation": 0,
+    "other": [],
+    "income_source": {
+      "salary": 0,
+      "bonus": 0,
+      "house_property": 0,
+      "capital_gain": 0,
+      "other": 0
+    },
+    "hra": {
+      "actual_hra": 0,
+      "deduction_allowed": 0,
+      "metro_city": false
+    },
+    "tax_planning": {
+      "financial_year": "",
+      "tax_liability_potential_saving": {
+        "current_taxable_income": "",
+        "tax_liability_comparison_table": {
+          "current": []
+        }
+      }
+    }
+  };
 
   // constructor(private toastr: ToastrService) { }
 
   Calculate() {
+    this.validate = true;
     // Personal Details
-    const name = (document.getElementById('name') as HTMLInputElement).value;
-    const designation = (document.getElementById('designation') as HTMLInputElement).value;
+    this.api_json.personal_info.name = (document.getElementById('name') as HTMLInputElement).value;
+    this.api_json.personal_info.designation = (document.getElementById('designation') as HTMLInputElement).value;
     const address = (document.getElementById('address') as HTMLInputElement).value;
     const gender = (document.getElementById('gender') as HTMLInputElement).value;
     const seniorcitizen = (document.getElementById('seniorcitizen') as HTMLInputElement).value;
     const pfapplicable = (document.getElementById('pfapplicable') as HTMLInputElement).value;
 
     this.Income();
-    this.GetUS80C();
-    this.GetUS80CCD();
-    this.GetUS80D();
-    this.GetUS80DD();
-    this.GetUS80E();
-    this.GetUS80G();
-    this.GetUS80U();
-    this.GetUS241B();
-    this.GetUS80EEA();
-    this.GetUS80EEB();
-    this.OtherIncome();
-    this.CalculateTax();
+    if (this.validate) {
+      this.GetUS80C();
+      this.GetUS80CCD();
+      this.GetUS80D();
+      this.GetUS80DD();
+      this.GetUS80E();
+      this.GetUS80G();
+      this.GetUS80U();
+      this.GetUS241B();
+      this.GetUS80EEA();
+      this.GetUS80EEB();
+      this.OtherIncome();
+      this.CalculateTax();
+    }
+
     // alert('its working name : ' + name + ' ,designation :' + designation + ' ,address : ' + address + ' ,gender : ' + gender + ' ,seniorcitizen : ' + seniorcitizen + ' ,pfapplicable : ' + pfapplicable);
   }
 
@@ -232,6 +272,32 @@ export class InvestmentDataComponent {
       }
     };
 
+    this.api_json.tax_planning.tax_liability_potential_saving.tax_liability_comparison_table.current.push({
+      "tax_regime": "Old",
+      "tax_liability": "",
+      "total_tax_payable": net_tax_payable_old.toString(),
+      "taxable_income": total_taxableincome_old.toString(),
+      "effective_tax_rate": effectiveTaxRateOldPer.toString(),
+      "deductions": deductionOldR.toString(),
+      "percentage": effectiveTaxRateOldPer.toString(),
+      "recommended": recommanded == "old" ? true : false,
+
+    });
+
+    this.api_json.tax_planning.tax_liability_potential_saving.tax_liability_comparison_table.current.push({
+      "tax_regime": "New",
+      "tax_liability": "",
+      "total_tax_payable": net_tax_payable_new.toString(),
+      "taxable_income": total_taxableincome_new.toString(),
+      "effective_tax_rate": effectiveTaxRateNewPer.toString(),
+      "deductions": deductionNewR.toString(),
+      "percentage": effectiveTaxRateNewPer.toString(),
+      "recommended": recommanded == "new" ? true : false,
+
+    });
+
+    console.log("JSON Report", this.api_json);
+
     localStorage.setItem("data", JSON.stringify(json));
     this.router.navigate(['/tax']);
 
@@ -243,16 +309,82 @@ export class InvestmentDataComponent {
     let actual_amount = 0;
     const ppfGpf = Number((document.getElementById('ppfGpf') as HTMLInputElement).value);
     console.log("ppfGpf", ppfGpf);
+    if (ppfGpf != 0) {
+      this.api_json.investments.push({
+        "title": "PPF/GPF",
+        "value": ppfGpf.toString()
+
+      })
+    }
 
     const rentarrears = Number((document.getElementById('rentarrears') as HTMLInputElement).value);
-    const sukanyadeposit = Number((document.getElementById('sukanyadeposit') as HTMLInputElement).value);
-    const lic = Number((document.getElementById('lic') as HTMLInputElement).value);
-    const gisncs = Number((document.getElementById('gisncs') as HTMLInputElement).value);
-    const postoffice = Number((document.getElementById('postoffice') as HTMLInputElement).value);
-    const other = Number((document.getElementById('other') as HTMLInputElement).value);
-    const npsoffice = Number((document.getElementById('npsoffice') as HTMLInputElement).value);
+    if (rentarrears != 0) {
+      this.api_json.investments.push({
+        "title": "Rent Arrears",
+        "value": rentarrears.toString()
 
-    actual_amount = (ppfGpf + rentarrears + sukanyadeposit + gisncs + postoffice + other + lic + other + npsoffice);
+      })
+    }
+    const sukanyadeposit = Number((document.getElementById('sukanyadeposit') as HTMLInputElement).value);
+    if (sukanyadeposit != 0) {
+      this.api_json.investments.push({
+        "title": "Sukanya deposit",
+        "value": sukanyadeposit.toString()
+
+      })
+    }
+    const lic = Number((document.getElementById('lic') as HTMLInputElement).value);
+    if (lic != 0) {
+      this.api_json.investments.push({
+        "title": "LIC",
+        "value": lic.toString()
+
+      })
+    }
+    const gisncs = Number((document.getElementById('gisncs') as HTMLInputElement).value);
+    if (gisncs != 0) {
+      this.api_json.investments.push({
+        "title": "GIS/NCS",
+        "value": gisncs.toString()
+
+      })
+    }
+
+    const tutionfees = Number((document.getElementById('tutionfees') as HTMLInputElement).value);
+    if (tutionfees != 0) {
+      this.api_json.investments.push({
+        "title": "Tuition Fee ",
+        "value": tutionfees.toString()
+
+      })
+    }
+
+    const postoffice = Number((document.getElementById('postoffice') as HTMLInputElement).value);
+    if (postoffice != 0) {
+      this.api_json.investments.push({
+        "title": "Post office time deposits",
+        "value": postoffice.toString()
+
+      })
+    }
+    const other = Number((document.getElementById('other') as HTMLInputElement).value);
+    if (other != 0) {
+      this.api_json.investments.push({
+        "title": "Other",
+        "value": other.toString()
+
+      })
+    }
+    const npsoffice = Number((document.getElementById('npsoffice') as HTMLInputElement).value);
+    if (npsoffice != 0) {
+      this.api_json.investments.push({
+        "title": "NPS (other than reimbursed by office)",
+        "value": npsoffice.toString()
+
+      })
+    }
+
+    actual_amount = (ppfGpf + rentarrears + sukanyadeposit + gisncs + tutionfees + postoffice + other + lic + other + npsoffice);
 
     this.amt80C = actual_amount;
 
@@ -262,6 +394,13 @@ export class InvestmentDataComponent {
     let total_allowed = 50000;
     let actual_amount = Number((document.getElementById('nps') as HTMLInputElement).value);
     this.amt80CD = actual_amount;
+    if (actual_amount != 0) {
+      this.api_json.investments.push({
+        "title": "NPS",
+        "value": actual_amount.toString()
+
+      })
+    }
   }
 
   GetUS80D() {
@@ -272,6 +411,8 @@ export class InvestmentDataComponent {
     const parentsInsuranceBelow60 = (document.getElementById('parentsIsAbove60') as HTMLInputElement).value;
     const parentsInsurance = Number((document.getElementById('parentsInsurance') as HTMLInputElement).value);
 
+    this.api_json.insurance.self = selfInsurance;
+    this.api_json.insurance.parents = parentsInsurance;
 
     total_allowed = total_allowed + (parentsInsuranceBelow60 == "true" ? 50000 : 25000);
     actual_amount = (selfInsurance + parentsInsurance);
@@ -289,6 +430,14 @@ export class InvestmentDataComponent {
     let actual_amount = 0;
     const handicappedDependent = Number((document.getElementById('handicappedDependent') as HTMLInputElement).value);
     const disabilityPercentage = Number((document.getElementById('disabilityPercentage') as HTMLInputElement).value);
+
+    if (handicappedDependent != 0) {
+      this.api_json.other.push({
+        "title": "Treatment of Handicapped dependent",
+        "value": handicappedDependent.toString()
+
+      })
+    }
 
     actual_amount = handicappedDependent;
     total_allowed = disabilityPercentage < 0 ? 0 :
@@ -309,11 +458,26 @@ export class InvestmentDataComponent {
   GetUS80E() {
     const educationLoanInterest = Number((document.getElementById('educationLoanInterest') as HTMLInputElement).value);
     this.amtUS80E = educationLoanInterest;
+    if (educationLoanInterest != 0) {
+      this.api_json.other.push({
+        "title": "Education Loan Interest",
+        "value": educationLoanInterest.toString()
+
+      })
+    }
   }
 
   GetUS80G() {
     const donation = Number((document.getElementById('donation') as HTMLInputElement).value);
     this.amtUS80G = donation;
+    this.api_json.donation = donation;
+    if (donation != 0) {
+      this.api_json.other.push({
+        "title": "Donation",
+        "value": donation.toString()
+
+      })
+    }
   }
 
   GetUS80U() {
@@ -328,6 +492,14 @@ export class InvestmentDataComponent {
       (physicalDisability < 0 ? 0 : physicalDisability > 75000 ? 75000 : physicalDisability);
     this.amtUS80U = total_allowed;
 
+    if (physicalDisability != 0) {
+      this.api_json.other.push({
+        "title": "Physical Disability",
+        "value": physicalDisability.toString()
+
+      })
+    }
+
     // alert('GetUS80U : Actual amount ' + actual_amount + ' Total allowed ' + total_allowed + ' Disability Percentage ' + physicalDisabilityPer);
 
   }
@@ -337,6 +509,14 @@ export class InvestmentDataComponent {
     let actual_amount = 0;
     const housingLoanInterest = Number((document.getElementById('housingLoanInterest') as HTMLInputElement).value);
     const seniorcitizen = (document.getElementById('seniorcitizen') as HTMLInputElement).value;
+
+    if (housingLoanInterest != 0) {
+      this.api_json.other.push({
+        "title": "Interest on Housing Loan",
+        "value": housingLoanInterest.toString()
+
+      })
+    }
 
     actual_amount = housingLoanInterest;
     total_allowed = housingLoanInterest < 0 ? 0 : seniorcitizen == "yes" ?
@@ -354,6 +534,13 @@ export class InvestmentDataComponent {
     const additionalHomeLoanInterest = Number((document.getElementById('additionalHomeLoanInterest') as HTMLInputElement).value);
     actual_amount = additionalHomeLoanInterest < 0 ? 0 : additionalHomeLoanInterest > total_allowed ? total_allowed : additionalHomeLoanInterest;
     this.amtUS80EEA = actual_amount;
+    if (additionalHomeLoanInterest != 0) {
+      this.api_json.other.push({
+        "title": "Additional Deduction on Loan",
+        "value": additionalHomeLoanInterest.toString()
+
+      })
+    }
   }
 
   GetUS80EEB() {
@@ -362,6 +549,13 @@ export class InvestmentDataComponent {
     const electricVehicleLoanInterest = Number((document.getElementById('electricVehicleLoanInterest') as HTMLInputElement).value);
     actual_amount = electricVehicleLoanInterest < 0 ? 0 : electricVehicleLoanInterest > total_allowed ? total_allowed : electricVehicleLoanInterest;
     this.amtUS80EEB = actual_amount;
+    if (actual_amount != 0) {
+      this.api_json.other.push({
+        "title": "Electrical Vehicle Loan Interest",
+        "value": actual_amount.toString()
+
+      })
+    }
   }
 
   GetUS80GG() {
@@ -387,8 +581,16 @@ export class InvestmentDataComponent {
     actual_amount = yearlySalary + bonus + houseproperty + capitalgain + othersource;
     if (actual_amount < 90000) {
       alert("Minimum Income Value should be 90000");
+      this.validate = false;
       // this.toastr.error("Minimum Income Value should be 90000");
     }
+
+    this.api_json.income_source.salary = yearlySalary;
+    this.api_json.income_source.bonus = bonus;
+    this.api_json.income_source.house_property = houseproperty;
+    this.api_json.income_source.capital_gain = capitalgain;
+    this.api_json.income_source.other = othersource;
+
   }
 
   CalculateBasicSalary() {
@@ -404,6 +606,7 @@ export class InvestmentDataComponent {
 
     (document.getElementById("hra") as HTMLInputElement).value = hra.toString();
 
+
     (document.getElementById("special_allowance") as HTMLInputElement).value = specialAllowance.toString();
 
 
@@ -411,7 +614,7 @@ export class InvestmentDataComponent {
     var x = calculatebasic * (metrocity == "yes" ? 0.5 : 0.4);
     (document.getElementById("basicSalary40") as HTMLInputElement).value = x.toString();
     (document.getElementById("actualHra") as HTMLInputElement).value = hra.toString();
-
+    this.api_json.hra.actual_hra = hra;
 
     var actualrent = Number((document.getElementById('actualRent') as HTMLInputElement).value);
 
@@ -423,7 +626,7 @@ export class InvestmentDataComponent {
 
     (document.getElementById("deductionAllowed") as HTMLInputElement).value = min_hra.toString();
     this.hra_deduction_allowed = min_hra;
-
+    this.api_json.hra.deduction_allowed = min_hra;
   }
 
   downloadPage() {
