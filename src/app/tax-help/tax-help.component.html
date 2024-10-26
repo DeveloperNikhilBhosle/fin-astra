@@ -1,7 +1,8 @@
 <app-shared-layout></app-shared-layout>
-<section id="benefits-section" class="benefits-section py-5">
+<section id="benefits-section" style="padding: 0px !important;" class="benefits-section py-5">
     <div class="container-fluid">
         <p class="title">What can I help with ?</p>
+        <h6>Please ask only tax-related questions. Thank you!</h6>
         <div class="textarea-container">
             <textarea id="question" name="question" class="question d-flex" placeholder="Type here...."
                 (input)="autoResize($event)" (keydown.enter)="callApi($event)" [(ngModel)]="questionText"></textarea>
@@ -16,6 +17,7 @@
         <div class="question-response" *ngIf="isResponse && questionText.trim()">
             <textarea id="getResponse" name="getResponse" class="getResponse" [(ngModel)]="getResponse" readonly>
             </textarea>
+            <div id="dynamicContent"></div>
         </div>
     </div>
 </section>
