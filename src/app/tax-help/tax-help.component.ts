@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SharedLayoutComponent } from '../shared-layout/shared-layout.component';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';  
+import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -16,18 +16,18 @@ export class TaxHelpComponent {
   questionText = '';
   isResponse: boolean = false;
   getResponse: any;
-  private apiUrl = 'https://dummyjson.com/posts/1';
+  //private apiUrl = 'https://dummyjson.com/posts/1';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   autoResize(event: any): void {
-    debugger
-    if(event.data == '' || event.data == null) {
-      this.isResponse = false;
-    }
     const textarea = event.target as HTMLTextAreaElement;
     textarea.style.height = `54px`; // Reset height
     textarea.style.height = `${textarea.scrollHeight}px`; // Set height based on scrollHeight
+
+    if (textarea.value.trim() === '') {
+      this.isResponse = false;
+    } 
   }
 
   // autoResponseResize(event: Event): void {
@@ -38,20 +38,20 @@ export class TaxHelpComponent {
 
   callApi(event: Event): void {
     event.preventDefault();
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
+    // const headers = new HttpHeaders({
+    //   'Content-Type': 'application/json'
+    // });
     if (this.questionText.trim()) {
-      this.http.post(this.apiUrl, {headers}).subscribe({
-        next: (response: any) => {
-          this.isResponse = true;
-          console.log('API Response:', response);
-        },
-        error: (error) => {
-          console.error('API Error:', error);
-          this.getResponse = 'An error occurred';
-        }
-      });
+      // this.http.post(this.apiUrl, {headers}).subscribe({
+      //   next: (response: any) => {
+      //     this.isResponse = true;
+      //     console.log('API Response:', response);
+      //   },
+      //   error: (error) => {
+      //     console.error('API Error:', error);
+      //     this.getResponse = 'An error occurred';
+      //   }
+      // });
       this.isResponse = true;
       this.getResponse = "ASDFGHJKLKJHGF LUYREWERUIOIUYTRE UYTREWEOOIUYTRTYUIUYTR WTYUIUYTRERTOIUYTR YTRERIUYTRERUIUYT RESWTUYTREDRTY DFYUYTRERTUUYTRERTYUYTRDUYTREHFD ASDFGHJKLKJHGF LUYREWERUIOIUYTRE UYTREWEOOIUYTRTYUIUYTR WTYUIUYTRERTOIUYTR YTRERIUYTRER ASDFGHJKLKJHGF LUYREWERUIOIUYTRE UYTREWEOOIUYTRTYUIUYTR WTYUIUYTRERTOIUYTR YTRERIUYTRER ASDFGHJKLKJHGF LUYREWERUIOIUYTRE UYTREWEOOIUYTRTYUIUYTR WTYUIUYTRERTOIUYTR YTRERIUYTRER ASDFGHJKLKJHGF LUYREWERUIOIUYTRE UYTREWEOOIUYTRTYUIUYTR WTYUIUYTRERTOIUYTR YTRERIUYTRER ASDFGHJKLKJHGF LUYREWERUIOIUYTRE UYTREWEOOIUYTRTYUIUYTR WTYUIUYTRERTOIUYTR YTRERIUYTRER ASDFGHJKLKJHGF LUYREWERUIOIUYTRE UYTREWEOOIUYTRTYUIUYTR WTYUIUYTRERTOIUYTR YTRERIUYTRER ASDFGHJKLKJHGF LUYREWERUIOIUYTRE UYTREWEOOIUYTRTYUIUYTR WTYUIUYTRERTOIUYTR YTRERIUYTRER ASDFGHJKLKJHGF LUYREWERUIOIUYTRE UYTREWEOOIUYTRTYUIUYTR WTYUIUYTRERTOIUYTR YTRERIUYTRER ASDFGHJKLKJHGF LUYREWERUIOIUYTRE UYTREWEOOIUYTRTYUIUYTR WTYUIUYTRERTOIUYTR YTRERIUYTRER ASDFGHJKLKJHGF LUYREWERUIOIUYTRE UYTREWEOOIUYTRTYUIUYTR WTYUIUYTRERTOIUYTR YTRERIUYTRER ASDFGHJKLKJHGF LUYREWERUIOIUYTRE UYTREWEOOIUYTRTYUIUYTR WTYUIUYTRERTOIUYTR YTRERIUYTRER ASDFGHJKLKJHGF LUYREWERUIOIUYTRE UYTREWEOOIUYTRTYUIUYTR WTYUIUYTRERTOIUYTR YTRERIUYTRER ASDFGHJKLKJHGF LUYREWERUIOIUYTRE UYTREWEOOIUYTRTYUIUYTR WTYUIUYTRERTOIUYTR YTRERIUYTRER vc ASDFGHJKLKJHGF LUYREWERUIOIUYTRE UYTREWEOOIUYTRTYUIUYTR WTYUIUYTRERTOIUYTR YTRERIUYTRER"
     } else {
